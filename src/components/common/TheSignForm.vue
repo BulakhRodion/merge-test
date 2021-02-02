@@ -13,6 +13,7 @@
     >
       <a-input
         class="merge-signin__input"
+        :class="{ approved: (getEmailValue() === undefined || '' || null ) ? emailComplete : !emailComplete }"
         v-decorator="[
           'email',
           {
@@ -38,6 +39,7 @@
     >
       <a-input
         class="merge-signin__input merge-signin__input--pass"
+        :class="{ approved: (getPassValue() === undefined || '' || null ) ? passComplete : !passComplete }"
         v-decorator="[
           'password',
           {
@@ -80,6 +82,8 @@ export default {
     return {
       hasErrors,
       form: this.$form.createForm(this, { name: "horizontal_login" }),
+      emailComplete: false,
+      passComplete: false,
     };
   },
   mounted() {
@@ -95,6 +99,14 @@ export default {
     passwordError() {
       const { getFieldError, isFieldTouched } = this.form;
       return isFieldTouched("password") && getFieldError("password");
+    },
+    getEmailValue() {
+      const { getFieldValue } = this.form;
+      return getFieldValue("email");
+    },
+    getPassValue() {
+      const { getFieldValue } = this.form;
+      return getFieldValue("password");
     },
     handleSubmit(e) {
       e.preventDefault();

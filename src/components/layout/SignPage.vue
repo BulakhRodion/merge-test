@@ -90,6 +90,28 @@ export default {
       max-width: 55%;
       border-radius: 15px;
       padding: 0 70px;
+      overflow: hidden;
+      &::before {
+        content: "";
+        position: absolute;
+        width: 600px;
+        height: 400px;
+        background-color: $secondary-blue;
+        top: -10px;
+        left: -224px;
+        transform: rotate(150deg);
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        width: 600px;
+        height: 400px;
+        z-index: 0;
+        background-color: $secondary-blue;
+        bottom: -10px;
+        right: -310px;
+        transform: rotate(136deg);
+      }
       @media screen and (max-width: 800px) {
         display: none;
       }
@@ -111,6 +133,9 @@ export default {
         padding: 10px 20px;
       }
     }
+  }
+  &__carousel {
+    z-index: 2;
   }
   &__carousel-item {
     display: flex !important;
@@ -287,6 +312,12 @@ export default {
   }
   .ant-input {
     height: 54px;
+  }
+  .has-error .ant-input {
+    border-color: #f5222d !important;
+  }
+  .approved {
+    border: 1px solid $green-color;
   }
 }
 </style>
